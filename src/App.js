@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
 
-  const byClassByFacultyClasses = "btn btn-link";
+  const byClassByFacultyClasses = "btn";
 
   const [data, setData] = useState([]);
 
@@ -24,13 +24,13 @@ function App() {
 
   return (
     <div className='container'>
-      <h3
-        className='text-secondary'
+      <h5
+        className='text-secondary mb-3'
       >
         Madison College IT Classes
-      </h3>
-      <h1
-          className='text-primary ml-3'
+      </h5>
+      <h2
+          className='text-primary'
         >
           <button
             className='btn btn-outline-primary mr-3'
@@ -43,18 +43,18 @@ function App() {
           >
             &gt;
           </button>
-        </h1>      
+        </h2>      
       <div
-        className='mb-5'
+        className='btn-group mt-3 mb-5'
       >
         <button
-          className={byClassByFacultyClasses + ' text-danger'}
+          className={byClassByFacultyClasses + ' btn-secondary'}
           
         >
           By Class ({data.length})
         </button>
         <button
-          className='btn btn-link'
+          className={byClassByFacultyClasses + ' btn-outline-secondary'}
         >
           By Faculty
         </button>
