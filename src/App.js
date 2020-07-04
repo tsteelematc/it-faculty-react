@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
   const byClassByFacultyClasses = "btn btn-link";
+
+  const [data, setData] = useState([]);
 
   useEffect(() =>
     // Function
@@ -13,7 +15,7 @@ function App() {
           .then(
             response => response.json()
           ).then(
-            data => console.log(data[0].data)
+            data => setData(data[0].data)
           );
     }
     // Dependency array. Empty means do it once ! ! !
@@ -49,7 +51,7 @@ function App() {
           className={byClassByFacultyClasses + ' text-danger'}
           
         >
-          By Class
+          By Class ({data.length})
         </button>
         <button
           className='btn btn-link'
@@ -57,6 +59,16 @@ function App() {
           By Faculty
         </button>
       </div>
+
+      { 
+        data.map(x => {
+          return (
+            <h1>
+              {x.class}
+            </h1>
+          )
+        })
+      }
       <div
         className='card'
       >
