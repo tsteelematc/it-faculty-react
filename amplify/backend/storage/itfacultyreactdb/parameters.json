@@ -1,0 +1,5 @@
+{
+    "tableName": "itfacultyreactdb",
+    "partitionKeyName": "key",
+    "partitionKeyType": "S"
+}
