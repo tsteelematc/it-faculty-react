@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,13 +6,28 @@ function App() {
 
   const byClassByFacultyClasses = "btn btn-link";
 
+  useEffect(() =>
+    // Function
+    {
+        fetch('https://d8h5trh1tb.execute-api.us-east-2.amazonaws.com/dev/semester/semester:Fall%202020')
+          .then(
+            response => response.json()
+          ).then(
+            data => console.log(data[0].data)
+          );
+    }
+    // Dependency array. Empty means do it once ! ! !
+    , []
+  );
+
   return (
-    <div class='container'>
-      <h1 
+    <div className='container'>
+      <h3
         className='text-secondary'
       >
         Madison College IT Classes
-        <small
+      </h3>
+      <h1
           className='text-primary ml-3'
         >
           <button
@@ -26,8 +41,7 @@ function App() {
           >
             &gt;
           </button>
-        </small>
-      </h1>
+        </h1>      
       <div
         className='mb-5'
       >
