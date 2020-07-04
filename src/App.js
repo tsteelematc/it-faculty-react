@@ -61,33 +61,29 @@ function App() {
       </div>
 
       { 
-        data.map(x => {
-          return (
-            <h1>
-              {x.class}
-            </h1>
+        data.map(x => (
+            <div
+              className='card mb-3'
+            >
+              <div
+                className='card-header'
+              >
+                { x.class }
+              </div>
+              <div
+                className='card-body'
+              >
+                {
+                  x.faculty.map(y => (
+                      <p>{y}</p>
+                    )
+                  )
+                }
+              </div>
+            </div>
           )
-        })
+        )
       }
-      <div
-        className='card'
-      >
-        <div
-          className='card-header'
-        >
-          Advanced Cloud for Developers
-        </div>
-        <div
-          className='card-body'
-        >
-          <p>
-            Tom Steele
-          </p>
-          <p>
-            Somebody Else
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
