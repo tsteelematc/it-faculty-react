@@ -28,7 +28,9 @@ function App() {
           </button>
         </small>
       </h1>
-      <div>
+      <div
+        className='mb-5'
+      >
         <button
           className={byClassByFacultyClasses + ' text-danger'}
           
