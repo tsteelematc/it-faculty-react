@@ -3,8 +3,59 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const byClassByFacultyClasses = "btn btn-link";
+
   return (
-    <h1 className='text-info'>Madison College IT Classes</h1>
+    <div class='container'>
+      <h1 
+        className='text-secondary'
+      >
+        Madison College IT Classes
+        <small
+          className='text-primary ml-3'
+        >
+          <button
+            className='btn btn-outline-primary mr-3'
+          >
+            &lt;
+          </button>
+            Fall 2020
+          <button
+            className='btn btn-outline-primary ml-3'
+          >
+            &gt;
+          </button>
+        </small>
+      </h1>
+      <div>
+        <button
+          className={byClassByFacultyClasses + ' text-danger'}
+          
+        >
+          By Class
+        </button>
+        <button
+          className='btn btn-link'
+        >
+          By Faculty
+        </button>
+      </div>
+      <div
+        className='card'
+      >
+        <div
+          className='card-header'
+        >
+          Advanced Cloud for Developers
+        </div>
+        <div
+          className='card-body'
+        >
+          Tom Steele
+        </div>
+      </div>
+    </div>
   );
 }
 
