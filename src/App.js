@@ -54,7 +54,12 @@ function App() {
         <div
           className='card-body'
         >
-          Tom Steele
+          <p>
+            Tom Steele
+          </p>
+          <p>
+            Somebody Else
+          </p>
         </div>
       </div>
     </div>
