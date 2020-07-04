@@ -23,68 +23,76 @@ function App() {
   );
 
   return (
-    <div className='container'>
-      <h5
-        className='text-secondary mb-3'
-      >
-        Madison College IT Classes
-      </h5>
-      <h2
-          className='text-primary'
-        >
-          <button
-            className='btn btn-outline-primary mr-3'
-          >
-            &lt;
-          </button>
-            Fall 2020
-          <button
-            className='btn btn-outline-primary ml-3'
-          >
-            &gt;
-          </button>
-        </h2>      
+    <>
       <div
-        className='btn-group mt-3 mb-5'
+        className='jumbotron'
       >
-        <button
-          className={byClassByFacultyClasses + ' btn-secondary'}
-          
-        >
-          By Class ({data.length})
-        </button>
-        <button
-          className={byClassByFacultyClasses + ' btn-outline-secondary'}
-        >
-          By Faculty
-        </button>
-      </div>
-
-      { 
-        data.map(x => (
-            <div
-              className='card mb-3'
+          <h5
+            className='text-secondary'
+          >
+            Madison College IT Classes
+          </h5>
+          <h2
+            className='text-primary'
+          >
+            <button
+              className='btn btn-outline-primary mr-3'
             >
+              &lt;
+            </button>
+              Fall 2020
+            <button
+              className='btn btn-outline-primary ml-3'
+            >
+              &gt;
+            </button>
+          </h2>    
+      </div>
+      <div
+        className='container'
+      >
+        <div
+          className='btn-group mb-3'
+        >
+          <button
+            className={byClassByFacultyClasses + ' btn-secondary'}
+            
+          >
+            By Class ({data.length})
+          </button>
+          <button
+            className={byClassByFacultyClasses + ' btn-outline-secondary'}
+          >
+            By Faculty
+          </button>
+        </div>
+
+        { 
+          data.map(x => (
               <div
-                className='card-header'
+                className='card mb-3'
               >
-                { x.class }
-              </div>
-              <div
-                className='card-body'
-              >
-                {
-                  x.faculty.map(y => (
-                      <p>{y}</p>
+                <div
+                  className='card-header'
+                >
+                  { x.class }
+                </div>
+                <div
+                  className='card-body'
+                >
+                  {
+                    x.faculty.map(y => (
+                        <p>{y}</p>
+                      )
                     )
-                  )
-                }
+                  }
+                </div>
               </div>
-            </div>
+            )
           )
-        )
-      }
-    </div>
+        }
+      </div>  
+    </>
   );
 }
 
