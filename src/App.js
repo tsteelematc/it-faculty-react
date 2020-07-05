@@ -10,62 +10,71 @@ function App() {
   useEffect(() =>
     // Function
     {
-        fetch('https://d8h5trh1tb.execute-api.us-east-2.amazonaws.com/dev/semester/semester:Fall%202020')
-          .then(
-            response => response.json()
-          ).then(
-            data => {
+      const fetchSemesterData = async () => {
+     
+        try {
+          
+          const response = await fetch('https://d8h5trh1tb.execute-api.us-east-2.amazonaws.com/dev/semester/semester:Fall%202020');
+          const data = await response.json();
 
-              setByClassData([
-                ...data[0].data
-                  .sort((a, b) => a.class == b.class ? 0 : a.class < b.class ? -1 : 1)
-                  .map(x => ({
-                    ...x
-                    , faculty: [
-                        ...new Set(
-                          [...x.faculty]
-                            .sort()
-                            .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
-                        )
-                      ]
-                  }))
-              ]);
+          console.log(data);
+          
+          setByClassData([
+            ...data[0].data
+              .sort((a, b) => a.class == b.class ? 0 : a.class < b.class ? -1 : 1)
+              .map(x => ({
+                ...x
+                , faculty: [
+                    ...new Set(
+                      [...x.faculty]
+                        .sort()
+                        .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
+                    )
+                  ]
+              }))
+          ]);
 
-              const groupedByFaculty = data[0].data
-                .reduce(
-                  (acc, x) => {
-                    x.faculty.forEach(y => {
-                      const classesForExistingFaculty = acc.get(y);
+          const groupedByFaculty = data[0].data
+            .reduce(
+              (acc, x) => {
+                x.faculty.forEach(y => {
+                  const classesForExistingFaculty = acc.get(y);
 
-                      classesForExistingFaculty 
-                        ? acc.set(y, [...classesForExistingFaculty, x.class]) 
-                        : acc.set(y, [x.class])
-                    })
+                  classesForExistingFaculty 
+                    ? acc.set(y, [...classesForExistingFaculty, x.class]) 
+                    : acc.set(y, [x.class])
+                })
 
-                    return acc;
-                  }
-                  , new Map()
-                );
-                
-              const arrayOfObjectsFromMap = [...groupedByFaculty]
-                .map(x => ({
-                    faculty: x[0]
-                    , classes: [
-                      ...new Set(
-                        x[1]
-                          .sort()
-                          .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
-                      )
-                    ]
-                  })
-                )
-                .sort((a, b) => a.faculty == b.faculty ? 0 : a.faculty < b.faculty ? -1 : 1)
-              ;
-              
-              //console.log(arrayOfObjectsFromMap);
-              setByFacultyData(arrayOfObjectsFromMap);
-            }
-          );
+                return acc;
+              }
+              , new Map()
+            );
+            
+          const arrayOfObjectsFromMap = [...groupedByFaculty]
+            .map(x => ({
+                faculty: x[0]
+                , classes: [
+                  ...new Set(
+                    x[1]
+                      .sort()
+                      .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
+                  )
+                ]
+              })
+            )
+            .sort((a, b) => a.faculty == b.faculty ? 0 : a.faculty < b.faculty ? -1 : 1)
+          ;
+          
+          //console.log(arrayOfObjectsFromMap);
+          setByFacultyData(arrayOfObjectsFromMap);
+
+        }
+        catch (err) {
+          console.error(err);
+        }
+      }
+
+      fetchSemesterData();
     }
     // Dependency array. Empty means do it once ! ! !
     , []
