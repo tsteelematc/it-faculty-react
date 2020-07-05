@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/it-faculty-react/static/css/main.5f361e03.chunk.css",
+    "main.js": "/it-faculty-react/static/js/main.5db251a4.chunk.js",
+    "main.js.map": "/it-faculty-react/static/js/main.5db251a4.chunk.js.map",
+    "runtime-main.js": "/it-faculty-react/static/js/runtime-main.caf9af70.js",
+    "runtime-main.js.map": "/it-faculty-react/static/js/runtime-main.caf9af70.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/it-faculty-react/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.347b1299.chunk.js": "/it-faculty-react/static/js/2.347b1299.chunk.js",
+    "static/js/2.347b1299.chunk.js.map": "/it-faculty-react/static/js/2.347b1299.chunk.js.map",
+    "index.html": "/it-faculty-react/index.html",
+    "precache-manifest.2dc1f1508d7f286d4b8b1e8a7f523658.js": "/it-faculty-react/precache-manifest.2dc1f1508d7f286d4b8b1e8a7f523658.js",
+    "service-worker.js": "/it-faculty-react/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/it-faculty-react/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.5f361e03.chunk.css.map": "/it-faculty-react/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.347b1299.chunk.js.LICENSE.txt": "/it-faculty-react/static/js/2.347b1299.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/it-faculty-react/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.caf9af70.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.347b1299.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.5db251a4.chunk.js"
+  ]
+}
