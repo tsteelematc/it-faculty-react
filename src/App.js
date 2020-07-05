@@ -4,8 +4,6 @@ import './App.css';
 
 function App() {
 
-  const byClassByFacultyClasses = "btn";
-
   const [data, setData] = useState([]);
 
   useEffect(() =>
@@ -35,6 +33,9 @@ function App() {
     // Dependency array. Empty means do it once ! ! !
     , []
   );
+
+  let [byClass, setByClass] = useState(true);
+  const toggleByClass = () => setByClass(byClass = !byClass);
 
   return (
     <>
@@ -69,13 +70,14 @@ function App() {
           className='btn-group mb-3'
         >
           <button
-            className={byClassByFacultyClasses + ' btn-secondary'}
-            
+            className={byClass ? 'btn btn-secondary' : 'btn btn-outline-secondary'}
+            onClick={toggleByClass}
           >
             By Class ({data.length})
           </button>
           <button
-            className={byClassByFacultyClasses + ' btn-outline-secondary disabled'}
+            className={byClass ? 'btn btn-outline-secondary' : 'btn btn-secondary'}
+            onClick={toggleByClass}
           >
             By Faculty
           </button>
@@ -86,11 +88,11 @@ function App() {
               <div
                 className='card mb-3'
               >
-                <div
+                <h5
                   className='card-header'
                 >
                   { x.class }
-                </div>
+                </h5>
                 <div
                   className='card-body'
                 >
