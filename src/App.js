@@ -20,7 +20,13 @@ function App() {
                 .sort((a, b) => a.class == b.class ? 0 : a.class < b.class ? -1 : 1)
                 .map(x => ({
                   ...x
-                  , faculty: [...new Set([...x.faculty].sort().map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`))]
+                  , faculty: [
+                      ...new Set(
+                        [...x.faculty]
+                          .sort()
+                          .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
+                      )
+                    ]
                 }))
               ]
             )
