@@ -18,7 +18,7 @@ function App() {
           const response = await fetch('https://d8h5trh1tb.execute-api.us-east-2.amazonaws.com/dev/semester/semester:Fall%202020');
           const data = await response.json();
 
-          console.log(data);
+          //console.log(data);
           
           setByClassData([
             ...data[0].data
@@ -146,7 +146,7 @@ function App() {
               />
             )
           )
-      }
+        }
       </div>  
     </>
   );
