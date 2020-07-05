@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './Card'
 
 function App() {
 
@@ -132,47 +133,17 @@ function App() {
         { 
           byClass
             ? byClassData.map(x => (
-                <div
-                  className='card mb-3'
-                >
-                  <h5
-                    className='card-header'
-                  >
-                    { x.class }
-                  </h5>
-                  <div
-                    className='card-body'
-                  >
-                    {
-                      x.faculty.map(y => (
-                          <p>{y}</p>
-                        )
-                      )
-                    }
-                  </div>
-                </div>
+                <Card 
+                  title={x.class} 
+                  items={x.faculty} 
+                />
               )
             )
             : byFacultyData.map(x => (
-              <div
-                className='card mb-3'
-              >
-                <h5
-                  className='card-header'
-                >
-                  { x.faculty }
-                </h5>
-                <div
-                  className='card-body'
-                >
-                  {
-                    x.classes.map(y => (
-                        <p>{y}</p>
-                      )
-                    )
-                  }
-                </div>
-              </div>
+              <Card 
+                title={x.faculty} 
+                items={x.classes} 
+              />
             )
           )
       }
