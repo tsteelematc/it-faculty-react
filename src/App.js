@@ -80,8 +80,8 @@ function App() {
     , []
   );
 
-  let [byClass, setByClass] = useState(true);
-  const toggleByClass = () => setByClass(byClass = !byClass);
+  const [byClass, setByClass] = useState(true);
+  const toggleByClass = () => setByClass(!byClass);
 
   return (
     <>
