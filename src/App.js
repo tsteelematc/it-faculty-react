@@ -44,13 +44,13 @@ function App() {
             className='text-primary'
           >
             <button
-              className='btn btn-outline-primary mr-3'
+              className='btn btn-outline-primary mr-3 disabled'
             >
               &lt;
             </button>
               Fall 2020
             <button
-              className='btn btn-outline-primary ml-3'
+              className='btn btn-outline-primary ml-3 disabled'
             >
               &gt;
             </button>
@@ -69,7 +69,7 @@ function App() {
             By Class ({data.length})
           </button>
           <button
-            className={byClassByFacultyClasses + ' btn-outline-secondary'}
+            className={byClassByFacultyClasses + ' btn-outline-secondary disabled'}
           >
             By Faculty
           </button>
