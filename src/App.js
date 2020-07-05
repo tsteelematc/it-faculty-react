@@ -4,7 +4,8 @@ import './App.css';
 
 function App() {
 
-  const [data, setData] = useState([]);
+  const [byClassData, setByClassData] = useState([]);
+  const [byFacultyData, setByFacultyData] = useState([]);
 
   useEffect(() =>
     // Function
@@ -13,21 +14,57 @@ function App() {
           .then(
             response => response.json()
           ).then(
-            data => setData([
-              ...data[0].data
-                .sort((a, b) => a.class == b.class ? 0 : a.class < b.class ? -1 : 1)
+            data => {
+
+              setByClassData([
+                ...data[0].data
+                  .sort((a, b) => a.class == b.class ? 0 : a.class < b.class ? -1 : 1)
+                  .map(x => ({
+                    ...x
+                    , faculty: [
+                        ...new Set(
+                          [...x.faculty]
+                            .sort()
+                            .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
+                        )
+                      ]
+                  }))
+              ]);
+
+              const groupedByFaculty = data[0].data
+                .reduce(
+                  (acc, x) => {
+                    x.faculty.forEach(y => {
+                      const classesForExistingFaculty = acc.get(y);
+
+                      classesForExistingFaculty 
+                        ? acc.set(y, [...classesForExistingFaculty, x.class]) 
+                        : acc.set(y, [x.class])
+                    })
+
+                    return acc;
+                  }
+                  , new Map()
+                );
+                
+              const arrayOfObjectsFromMap = [...groupedByFaculty]
                 .map(x => ({
-                  ...x
-                  , faculty: [
+                    faculty: x[0]
+                    , classes: [
                       ...new Set(
-                        [...x.faculty]
+                        x[1]
                           .sort()
                           .map((y, i, arr) => `${y} ${arr.filter(z => z === y).length > 1 ? '(' + arr.filter(z => z === y).length + ' sections)' : ''}`)
                       )
                     ]
-                }))
-              ]
-            )
+                  })
+                )
+                .sort((a, b) => a.faculty == b.faculty ? 0 : a.faculty < b.faculty ? -1 : 1)
+              ;
+              
+              //console.log(arrayOfObjectsFromMap);
+              setByFacultyData(arrayOfObjectsFromMap);
+            }
           );
     }
     // Dependency array. Empty means do it once ! ! !
@@ -73,31 +110,54 @@ function App() {
             className={byClass ? 'btn btn-secondary' : 'btn btn-outline-secondary'}
             onClick={toggleByClass}
           >
-            By Class ({data.length})
+            By Class ({byClassData.length})
           </button>
           <button
             className={byClass ? 'btn btn-outline-secondary' : 'btn btn-secondary'}
             onClick={toggleByClass}
           >
-            By Faculty
+            By Faculty ({byFacultyData.length})
           </button>
         </div>
 
         { 
-          data.map(x => (
+          byClass
+            ? byClassData.map(x => (
+                <div
+                  className='card mb-3'
+                >
+                  <h5
+                    className='card-header'
+                  >
+                    { x.class }
+                  </h5>
+                  <div
+                    className='card-body'
+                  >
+                    {
+                      x.faculty.map(y => (
+                          <p>{y}</p>
+                        )
+                      )
+                    }
+                  </div>
+                </div>
+              )
+            )
+            : byFacultyData.map(x => (
               <div
                 className='card mb-3'
               >
                 <h5
                   className='card-header'
                 >
-                  { x.class }
+                  { x.faculty }
                 </h5>
                 <div
                   className='card-body'
                 >
                   {
-                    x.faculty.map(y => (
+                    x.classes.map(y => (
                         <p>{y}</p>
                       )
                     )
@@ -106,7 +166,7 @@ function App() {
               </div>
             )
           )
-        }
+      }
       </div>  
     </>
   );
